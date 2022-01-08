@@ -41,10 +41,10 @@ from playsound import playsound
 timer_running_flag = False
 focus_running_flag = None
 
-focus_time = 45
-break_time = 15
+focus_time = 25
+break_time = 5
 
-alarm_flag = False
+alarm_flag = True
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -126,6 +126,8 @@ class Main_window(Gtk.Window):
 
 
     def send_notification(self):
+        global alarm_flag
+        
         Notify.init('pomadoro_timer')
 
         self.notification = Notify.Notification.new('Pomodoro', f'{self.state} pomo ended! Choose action:', icon_path)
@@ -154,10 +156,10 @@ class Main_window(Gtk.Window):
     def notification_callback(self, notification, action_name):
         global timer_running_flag
 
-        if action_name == "snooze":
-            GLib.timeout_add_seconds(60, self.send_notification)
-        else:
-            if not timer_running_flag:
+        if not timer_running_flag:
+            if action_name == "snooze":
+                GLib.timeout_add_seconds(60, self.send_notification)
+            else:
                 self.on_start_clicked(button=self.button)
 
 
@@ -333,10 +335,10 @@ class Settings_window(Gtk.Window):
     def on_alarm_toggled(self, button):
         global alarm_flag     
 
-        if alarm_flag:
-            alarm_flag = False
-        else:
+        if button.get_active():
             alarm_flag = True
+        else:
+            alarm_flag = False        
         
 # ---------------------------------------------------------------------------
 
