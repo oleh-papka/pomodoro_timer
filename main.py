@@ -31,6 +31,7 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Notify', '0.7')
 from gi.repository import Gtk, GLib, Gdk, GdkPixbuf, Notify
 
+import os 
 import chime
 from datetime import datetime, timedelta
 from playsound import playsound
@@ -45,8 +46,10 @@ break_time = 15
 
 alarm_flag = False
 
-icon_path = './src/icon.png'
-sound_path = './src/1.mp3'
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+icon_path = f'{dir_path}/src/icon.png'
+sound_path = f'{dir_path}/src/1.mp3'
 
 APP_NAME = 'pomodoro_timer'
 
