@@ -22,7 +22,7 @@ __email__ =  "olegpapka2@gmail.com"
 __license__ = "GPLv3"
 __maintainer__ = "OlegPapka2"
 __status__ = "Production"
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 # ---------------------------------------------------------------------------
 
@@ -45,6 +45,7 @@ focus_time = 25
 break_time = 5
 
 alarm_flag = True
+always_on_top_flag = False
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -61,6 +62,8 @@ class Main_window(Gtk.Window):
         super().__init__(title=APP_NAME, default_width=300, default_height=270)
         self.set_border_width(15)
         self.set_resizable(False)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_icon(GdkPixbuf.Pixbuf.new_from_file_at_size(icon_path, 96, 96))
 
         self.duration = 0
         self.end_time = 0
@@ -68,7 +71,6 @@ class Main_window(Gtk.Window):
         self.state = ''
         self.notification = None
         
-
         hb = Gtk.HeaderBar()
         hb.props.show_close_button = True
         hb.props.title = APP_NAME
@@ -247,7 +249,7 @@ class Main_window(Gtk.Window):
 
 
     def settings_clicked(self, button):
-        win_s = Settings_window()
+        win_s = Settings_window(main_window=self)
         win_s.show_all()
 
 
@@ -260,7 +262,7 @@ class Main_window(Gtk.Window):
         dialog.set_version(__version__)
         dialog.set_website('https://olegpapka.de')
         dialog.set_authors(['Oleg Papka <olegpapka2@gmail.com> (Maintainer)'])
-        dialog.set_logo(GdkPixbuf.Pixbuf.new_from_file_at_size(icon_path, 100, 100))
+        dialog.set_logo(GdkPixbuf.Pixbuf.new_from_file_at_size(icon_path, 96, 96))
         dialog.set_comments('Simple pomadoro timer')
         dialog.set_license_type(Gtk.License.GPL_3_0)
         dialog.run()
@@ -269,10 +271,12 @@ class Main_window(Gtk.Window):
 
 class Settings_window(Gtk.Window):
 
-    def __init__(self) -> None:
+    def __init__(self, main_window) -> None:
         super().__init__(title=APP_NAME)
         self.set_border_width(15)
         self.set_resizable(False)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.m_window = main_window
 
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         self.add(box)
@@ -319,6 +323,14 @@ class Settings_window(Gtk.Window):
 
         box.pack_start(self.check_alarm, False, False, 0)
 
+        self.check_top = Gtk.CheckButton(label="Set always on top")
+        self.check_top.connect("toggled", self.on_top_toggled)
+        
+        if always_on_top_flag:
+            self.check_top.set_active(True)
+
+        box.pack_start(self.check_top, False, False, 0)
+
 
     def on_focus_sbtn_change(self, scroll):
         global focus_time
@@ -339,6 +351,16 @@ class Settings_window(Gtk.Window):
             alarm_flag = True
         else:
             alarm_flag = False        
+
+    def on_top_toggled(self, button):
+        global always_on_top_flag
+
+        if button.get_active():
+            always_on_top_flag = True
+        else:
+            always_on_top_flag = False     
+
+        self.m_window.set_keep_above(always_on_top_flag)
         
 # ---------------------------------------------------------------------------
 
