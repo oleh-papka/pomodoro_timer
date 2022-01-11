@@ -22,7 +22,7 @@ __email__ =  "olegpapka2@gmail.com"
 __license__ = "GPLv3"
 __maintainer__ = "OlegPapka2"
 __status__ = "Production"
-__version__ = "0.1.1"
+__version__ = "0.1.1-1"
 
 # ---------------------------------------------------------------------------
 
@@ -128,7 +128,10 @@ class Main_window(Gtk.Window):
 
 
     def send_notification(self):
-        global alarm_flag
+        global alarm_flag, timer_running_flag
+
+        if timer_running_flag:
+            return
         
         Notify.init('pomadoro_timer')
 
