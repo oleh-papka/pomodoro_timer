@@ -1,11 +1,11 @@
 # Pomodoro Timer
 
-## Overview
-https://github.com/Oleh-Papka/pomodoro_timer/assets/60508074/72b04ef6-af87-42e3-93d2-48b44fee3acf
-
 ## Description
 This Pomodoro Timer is a simple project to recreate simple but usable time management tool to boost productivity by using the Pomodoro Technique.  
 It allows users to work in focused intervals, known as "pomodoros," followed by short breaks to rest.
+
+## Overview
+https://github.com/Oleh-Papka/pomodoro_timer/assets/60508074/72b04ef6-af87-42e3-93d2-48b44fee3acf
 
 ## Features
 - Customizable focus and break intervals
@@ -17,32 +17,31 @@ Before installing the Pomodoro Timer, ensure you have Python installed on your s
 
 ## Installation
 
-#### 1. Clone the repository:
-`git clone https://github.com/Oleh-Papka/pomadoro_timer.git`
+**1. Clone the repository:**  
+  `git clone https://github.com/Oleh-Papka/pomadoro_timer.git`
 
-#### 2. Navigate to the project directory:
-`cd pomadoro_timer`
+**2. Navigate to the project directory:**  
+  `cd pomadoro_timer`
 
-#### 3. Install PyGObject
+**3. Install PyGObject**  
 PyGObject is required for the application's GUI. Depending on your operating system, you can install PyGObject using the following commands:
+- Ubuntu/Debian  
+  `sudo apt-get install python3-gi python3-gi-cairo gir1.2-gtk-3.0`
 
-- **Ubuntu/Debian**
-`sudo apt-get install python3-gi python3-gi-cairo gir1.2-gtk-3.0`
+- Fedora  
+  `sudo dnf install python3-gobject gtk3`
 
-- **Fedora**
-`sudo dnf install python3-gobject gtk3`
+- Arch Linux  
+  `sudo pacman -S python-gobject gtk3`
 
-- **Arch Linux**
-`sudo pacman -S python-gobject gtk3`
+- macOS (using Homebrew)  
+  `brew install pygobject3 gtk+3`
 
-- **macOS (using Homebrew)**
-`brew install pygobject3 gtk+3`
-
-#### 4. Install Python dependencies
-`pip install -r requirements.txt
+**4. Install Python dependencies:**  
+  `pip install -r requirements.txt`
 
 ## Usage
-To run the Pomodoro Timer, execute the following command in the terminal from the project directory:
+To run the Pomodoro Timer, execute the following command in the terminal from the project directory:  
 `python main.py`
 
 ## Contributing
