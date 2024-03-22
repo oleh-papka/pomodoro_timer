@@ -13,14 +13,14 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
-__author__ = "Oleg Papka"
+__author__ = "Oleh Papka"
 __contact__ = "olegpapka2@gmail.com"
-__copyright__ = "Copyright 2022, Oleg Papka"
+__copyright__ = "Copyright 2022, Oleh Papka"
 __date__ = "2022/01/06"
 __deprecated__ = False
 __email__ =  "olegpapka2@gmail.com"
 __license__ = "GPLv3"
-__maintainer__ = "OlegPapka2"
+__maintainer__ = "Oleh-Papka"
 __status__ = "Production"
 __version__ = "0.1.1-1"
 
@@ -263,8 +263,8 @@ class Main_window(Gtk.Window):
         dialog.set_logo_icon_name(APP_NAME)
         dialog.set_program_name(APP_NAME)
         dialog.set_version(__version__)
-        dialog.set_website('https://olegpapka.de')
-        dialog.set_authors(['Oleg Papka <olegpapka2@gmail.com> (Maintainer)'])
+        dialog.set_website('https://github.com/Oleh-Papka/pomodoro_timer')
+        dialog.set_authors(['Oleh Papka <olegpapka2@gmail.com> (Maintainer)'])
         dialog.set_logo(GdkPixbuf.Pixbuf.new_from_file_at_size(icon_path, 96, 96))
         dialog.set_comments('Simple pomadoro timer')
         dialog.set_license_type(Gtk.License.GPL_3_0)
